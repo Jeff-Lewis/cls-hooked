@@ -4,6 +4,8 @@
 
 # Continuation-Local Storage ( Hooked )
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Jeff-Lewis/cls-hooked.svg)](https://greenkeeper.io/)
+
 ## This module uses AsyncWrap which is an undocumented API, so please consider the risk before using it
 
 ### This is a fork of [CLS](https://github.com/othiym23/node-continuation-local-storage) using [AsyncWrap](https://github.com/nodejs/node-eps/blob/async-wrap-ep/XXX-asyncwrap-api.md) instead of [async-listener](https://github.com/othiym23/async-listener)
