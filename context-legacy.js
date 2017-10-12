@@ -95,9 +95,11 @@ Namespace.prototype.run = function run(fn) {
     return context;
   }
   catch (exception) {
-    if (exception) {
+    try {
+      //handle exception(throw by user) which is not an error object.
+      //exception: null, undefined, string(when 'use strict') etc.
       exception[ERROR_SYMBOL] = context;
-    }
+    } catch (ex) {}
     throw exception;
   }
   finally {
@@ -173,9 +175,11 @@ Namespace.prototype.bind = function bindFactory(fn, context) {
       return fn.apply(this, arguments);
     }
     catch (exception) {
-      if (exception) {
+      try {
+        //handle exception(throw by user) which is not an error object.
+        //exception: null, undefined, string(when 'use strict') etc.
         exception[ERROR_SYMBOL] = context;
-      }
+      } catch (ex) {}
       throw exception;
     }
     finally {
