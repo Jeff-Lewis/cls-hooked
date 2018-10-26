@@ -164,8 +164,7 @@ Make sure you clean up any references to destroyed namespaces yourself.
 
 When there is an active context, exceptions produced at any point in the same call stack where the context was activated, will get the `ERROR_SYMBOL` property with a reference to the current active context.
 
-Since `ERROR_SYMBOL` is a private symbol, it won't show up by default if errors are inspected (e.g `JSON.stringify` or `util.inspect`), and it's value is only retriable with a reference to `cls.ERROR_SYMBOL`.
-
+Since `ERROR_SYMBOL` is a private symbol, it won't show up by default if exceptions are inspected (e.g `JSON.stringify` or `util.inspect`), and it's value is only retriable with a reference to `cls.ERROR_SYMBOL` or by using the [namespace.fromException](#namespace.fromException(exception)) method.
 
 ## process.namespaces
 
@@ -276,6 +275,14 @@ setInterval(function () {
   bound('test');
 }, 100);
 ```
+
+
+### namespace.fromException(exception)
+
+Returns the active context associated to an exception produced in the same call stack where the context was activated.
+
+See [ERROR_SYMBOL](#cls.ERROR_SYMBOL) documentation for additional information of how this method works.
+
 
 ## context
 
