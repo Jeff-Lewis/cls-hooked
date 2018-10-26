@@ -8,7 +8,7 @@
 
 ### When running Nodejs version < 8, this module uses [AsyncWrap](https://github.com/nodejs/node-eps/blob/async-wrap-ep/XXX-asyncwrap-api.md) which is an unsupported Nodejs API, so please consider the risk before using it.
 
-### When running Nodejs version >= 8.2.1, this module uses the newer [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) API which is considered `Experimental` by Nodejs. 
+### When running Nodejs version >= 8.2.1, this module uses the newer [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) API which is considered `Experimental` by Nodejs.
 
 ### Thanks to [@trevnorris](https://github.com/trevnorris) for [AsyncWrap](https://github.com/nodejs/node-eps/blob/async-wrap-ep/XXX-asyncwrap-api.md), [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) and all the async work in Node and [@AndreasMadsen](https://github.com/AndreasMadsen) for [async-hook](https://github.com/AndreasMadsen/async-hook)
 
@@ -18,7 +18,7 @@
 2. Second implementation called **[AsyncWrap, async-wrap or async_wrap](https://github.com/nodejs/node-eps/blob/async-wrap-ep/XXX-asyncwrap-api.md)** was included to Nodejs v0.12.
     - `AsyncWrap` is unofficial and undocumented but is currently in Nodejs versions 6 & 7
     - `cls-hooked` uses `AsyncWrap` when run in Node < 8.
-3. Third implementation and [offically Node-eps accepted](https://github.com/nodejs/node-eps/blob/master/006-asynchooks-api.md) **AsyncHooks ([async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md)) API** was included in Nodejs v8. :) 
+3. Third implementation and [offically Node-eps accepted](https://github.com/nodejs/node-eps/blob/master/006-asynchooks-api.md) **AsyncHooks ([async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md)) API** was included in Nodejs v8. :)
 **The latest version of `cls-hooked` uses [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) API when run in Node >= 8.2.1**
 
 ---
@@ -159,6 +159,13 @@ will stop the propagation of values in any existing namespaces, if there are
 remaining references to those namespaces in code, the associated storage will
 still be reachable, even though the associated state is no longer being updated.
 Make sure you clean up any references to destroyed namespaces yourself.
+
+## cls.ERROR_SYMBOL
+
+When there is an active context, errors produced at any point in the same call stack where the context was activated, will get the `ERROR_SYMBOL` property with a reference to the current active context.
+
+Since `ERROR_SYMBOL` is a private symbol, it won't show up by default if errors are inspected (e.g JSON.stringify or util.inspect), and it's value is only retriable witha a reference to `cls.ERROR_SYMBOL`.
+
 
 ## process.namespaces
 
