@@ -7,7 +7,7 @@ const wrapEmitter = require('emitter-listener');
 const async_hooks = require('async_hooks');
 
 const CONTEXTS_SYMBOL = 'cls@contexts';
-const ERROR_SYMBOL = 'error@context';
+const ERROR_SYMBOL = Symbol('error@context');
 
 const DEBUG_CLS_HOOKED = process.env.DEBUG_CLS_HOOKED;
 

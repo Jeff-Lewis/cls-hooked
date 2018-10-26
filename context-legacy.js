@@ -6,7 +6,7 @@ const wrapEmitter = require('emitter-listener');
 const asyncHook = require('async-hook-jl');
 
 const CONTEXTS_SYMBOL = 'cls@contexts';
-const ERROR_SYMBOL = 'error@context';
+const ERROR_SYMBOL = Symbol('error@context');
 
 //const trace = [];
 
