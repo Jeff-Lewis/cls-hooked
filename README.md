@@ -162,9 +162,9 @@ Make sure you clean up any references to destroyed namespaces yourself.
 
 ## cls.ERROR_SYMBOL
 
-When there is an active context, errors produced at any point in the same call stack where the context was activated, will get the `ERROR_SYMBOL` property with a reference to the current active context.
+When there is an active context, exceptions produced at any point in the same call stack where the context was activated, will get the `ERROR_SYMBOL` property with a reference to the current active context.
 
-Since `ERROR_SYMBOL` is a private symbol, it won't show up by default if errors are inspected (e.g JSON.stringify or util.inspect), and it's value is only retriable witha a reference to `cls.ERROR_SYMBOL`.
+Since `ERROR_SYMBOL` is a private symbol, it won't show up by default if errors are inspected (e.g `JSON.stringify` or `util.inspect`), and it's value is only retriable with a reference to `cls.ERROR_SYMBOL`.
 
 
 ## process.namespaces
