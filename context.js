@@ -49,7 +49,7 @@ Namespace.prototype.set = function set(key, value) {
 Namespace.prototype.get = function get(key) {
   if (!this.active) {
     if (DEBUG_CLS_HOOKED) {
-      const asyncHooksCurrentId = async_hooks.currentId();
+      const asyncHooksCurrentId = async_hooks.executionAsyncId();
       const triggerId = async_hooks.triggerAsyncId();
       const indentStr = ' '.repeat(this._indent < 0 ? 0 : this._indent);
       //debug2(indentStr + 'CONTEXT-GETTING KEY NO ACTIVE NS:' + key + '=undefined' + ' (' + this.name + ') currentUid:' + currentUid + ' active:' + util.inspect(this.active, {showHidden:true, depth:2, colors:true}));
