@@ -361,7 +361,7 @@ function destroyNamespace(name) {
   assert.ok(namespace, 'can\'t delete nonexistent namespace! "' + name + '"');
   assert.ok(namespace.id, 'don\'t assign to process.namespaces directly! ' + util.inspect(namespace));
 
-  process.namespaces[name] = null;
+  delete process.namespaces[name];
 }
 
 function reset() {
