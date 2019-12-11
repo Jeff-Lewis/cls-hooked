@@ -25,14 +25,14 @@ describe('cls with net connection 2', function() {
         server.on('connection', function OnServerConnection(socket) {
             expect(namespace.get(keyName)).equal(TEST_VALUE, 'state has been mutated');
 
-            socket.on('data', function OnServerSocketData(data) {
+            socket.on('data', namespace.bind(function OnServerSocketData(data) {
               data = data.toString('utf-8');
               expect(data).equal(DATUM1, 'should get DATUM1');
               expect(namespace.get(keyName)).equal(TEST_VALUE, 'state is still preserved');
 
               socket.end(DATUM2);
               server.close();
-            });
+            }));
           }
         );
 

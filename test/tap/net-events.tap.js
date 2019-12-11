@@ -17,11 +17,11 @@ test('continuation-local state with net connection', function(t) {
 
       server = net.createServer(function(socket) {
         t.equal(namespace.get('test'), 'newContextValue', 'state has been mutated');
-        socket.on('data', function() {
+        socket.on('data', namespace.bind(function() {
           t.equal(namespace.get('test'), 'newContextValue', 'state is still preserved');
           server.close();
           socket.end('GoodBye');
-        });
+        }));
       });
       server.listen(function() {
         var address = server.address();
