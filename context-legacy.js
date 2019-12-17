@@ -126,17 +126,12 @@ Namespace.prototype.runPromise = function runPromise(fn) {
   let context = this.createContext();
   this.enter(context);
 
-  let promise = fn(context);
-  if (!promise || !promise.then || !promise.catch) {
-    throw new Error('fn must return a promise.');
-  }
-
   if (DEBUG_CLS_HOOKED) {
     debug2(' BEFORE runPromise: ' + this.name + ' uid:' + currentUid + ' len:' + this._set.length + ' ' +
       util.inspect(context));
   }
 
-  return promise
+  return new Promise((resolve) => { resolve(fn(context)); })
     .then(result => {
       if (DEBUG_CLS_HOOKED) {
         debug2(' AFTER runPromise: ' + this.name + ' uid:' + currentUid + ' len:' + this._set.length + ' ' +

@@ -8,7 +8,7 @@
 
 ### When running Nodejs version < 8, this module uses [AsyncWrap](https://github.com/nodejs/node-eps/blob/async-wrap-ep/XXX-asyncwrap-api.md) which is an unsupported Nodejs API, so please consider the risk before using it.
 
-### When running Nodejs version >= 8.2.1, this module uses the newer [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) API which is considered `Experimental` by Nodejs. 
+### When running Nodejs version >= 8.2.1, this module uses the newer [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) API which is considered `Experimental` by Nodejs.
 
 ### Thanks to [@trevnorris](https://github.com/trevnorris) for [AsyncWrap](https://github.com/nodejs/node-eps/blob/async-wrap-ep/XXX-asyncwrap-api.md), [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) and all the async work in Node and [@AndreasMadsen](https://github.com/AndreasMadsen) for [async-hook](https://github.com/AndreasMadsen/async-hook)
 
@@ -18,7 +18,7 @@
 2. Second implementation called **[AsyncWrap, async-wrap or async_wrap](https://github.com/nodejs/node-eps/blob/async-wrap-ep/XXX-asyncwrap-api.md)** was included to Nodejs v0.12.
     - `AsyncWrap` is unofficial and undocumented but is currently in Nodejs versions 6 & 7
     - `cls-hooked` uses `AsyncWrap` when run in Node < 8.
-3. Third implementation and [offically Node-eps accepted](https://github.com/nodejs/node-eps/blob/master/006-asynchooks-api.md) **AsyncHooks ([async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md)) API** was included in Nodejs v8. :) 
+3. Third implementation and [offically Node-eps accepted](https://github.com/nodejs/node-eps/blob/master/006-asynchooks-api.md) **AsyncHooks ([async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md)) API** was included in Nodejs v8. :)
 **The latest version of `cls-hooked` uses [async_hooks](https://github.com/nodejs/node/blob/master/doc/api/async_hooks.md) API when run in Node >= 8.2.1**
 
 ---
@@ -218,6 +218,20 @@ when it's called.
 
 Same as `namespace.run()` but returns the return value of the callback rather
 than the context.
+
+### namespace.runPromise(callback)
+
+* return: the return value of the callback
+
+Create a new context on which values can be set or read. Run all the functions
+that are called (either directly, or indirectly through asynchronous functions
+that take callbacks themselves) from the provided callback within the scope of
+that namespace. The new context is passed as an argument to the callback
+when it's called.
+
+Similar to `namespace.run()` but the callback may return a promise. The
+function returns a promise which resolves or rejects to the value or reason
+of the promise returned by the callback.
 
 ### namespace.bind(callback, [context])
 
